@@ -1,3 +1,4 @@
+import re
 from flask import Flask, request, send_file
 from werkzeug.utils import secure_filename
 from flask_pymongo import PyMongo
@@ -52,19 +53,20 @@ def id_detect():
                 return {'status': 'error', 'message': 'An error occured while encoding and scanning document.'}
             print(base64_response)
             if base64_response['model']['type'] == 'id/tur' and base64_response['fields']['documentType']['isValid']:
-                if base64_response['fields']['nationalIdNumber']['isValid']:
-                    data['n_id'] = base64_response['fields']['nationalIdNumber']['value']
-                else:
-                    return {'status': 'error', 'message': 'National ID Number is Invalid.'}
+                #if base64_response['fields']['nationalIdNumber']['isValid']:
+                #    data['n_id'] = base64_response['fields']['nationalIdNumber']['value']
+                #else:
+                #    return {'status': 'error', 'message': 'National ID Number is Invalid.'}
+                data['n_id'] = base64_response['fields']['nationalIdNumber']['value']
                 data['name'] = base64_response['fields']['givenName']['value']
                 data['surname'] = base64_response['fields']['familyName']['value']
+                data['isValid'] = base64_response['fields']['nationalIdNumber']['isValid']
             else:
                 return {"status": "error", "message": "ID is invalid."}
             return data
 app.add_url_rule('/id', 'id_detect', id_detect, methods=["POST", "GET"])
         
 def register():
-    print('xd')
     if request.method == "POST":
         body = request.get_json()
         if mongo.users.find_one({'n_id': body['n_id']}) is not None:
@@ -74,6 +76,27 @@ def register():
         del resp['_id']
         return resp
 app.add_url_rule('/register', 'register', register, methods=["POST", "GET"])
+
+def item(id=None):
+    if id:
+        data = mongo.items.find_one({"id": id})
+        if data:
+            del data['_id']
+            return data
+        else:
+            return {'status': 'error', 'message': 'No Item Finded With ID %s' % id}
+    else:
+        if request.method == "POST":
+            inserted = mongo.items.insert_one(request.get_json())
+            resp = mongo.items.find_one({'_id': inserted.inserted_id})
+            del resp['_id']
+            return resp
+        elif request.method == "GET":
+            get_all = [x.pop('_id') for x in mongo.items.find()]
+            return get_all
+            
+app.add_url_rule('/item', 'item', item, methods=["POST", "GET"])
+app.add_url_rule('/item/<id>', 'item', item, methods=["POST", "GET"])
 
 try:
     app.run(host=config.Host, port=config.Port, debug=config.Debug)
