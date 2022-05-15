@@ -103,15 +103,18 @@ def login():
         else:
             return {'status': 'error', 'message': 'Password is not match.'}
 
-def user():
+def user(u_id=None):
     if request.method == "GET":
-        body = request.get_json()
-        resp = mongo.users.find_one({'n_id': body['n_id']})
-        if resp is None:
-            return {"status": "error", "message": "This national id is not registered."}
-        del resp['_id']
-        del resp['password']
-        return resp
+        if u_id is not None:
+            resp = mongo.users.find_one({'n_id': u_id})
+            if resp is None:
+                return {"status": "error", "message": "This national id is not registered."}
+            del resp['_id']
+            del resp['password']
+            return resp
+        else:
+            users = [{k: v for k, v in x.items() if k != '_id' and k != 'password'} for x in list(mongo.users.find())]
+            return {"list": sorted(users, key=lambda x: x['points'], reverse=True)}
 
 def item(i_id=None):
     if i_id:
@@ -126,6 +129,7 @@ def item(i_id=None):
         if request.method == "POST":
             body = request.get_json()
             body['continent_name'] = (re.sub(r'[^\w\s]', '', body['name'].lower()).replace(' ', '_')).translate(str.maketrans("çğıöşü", "cgiosu"))
+            resp = mongo.items.find_one({'_id': inserted.inserted_id})
             inserted = mongo_insert(mongo.items, body, 'items')
             resp = mongo.items.find_one({'_id': inserted.inserted_id})
             del resp['_id']
@@ -224,11 +228,38 @@ def order():
             open_all = [{k: v for k, v in x.items() if k != '_id'} for x in list(mongo.orders.find(body))]
             get_all = open_all + closed_all
             return {'list': get_all}
-
+    elif request.method == "POST":
+        if request.args.get("status") == "new":
+            order = mongo_insert(mongo.orders, request.get_json(), 'orders')
+            order = mongo.orders.find_one({'_id': order.inserted_id})
+            del order['_id']
+            return order
+        elif request.args.get("status") == "closed":
+            body = request.get_json()
+            order = mongo.orders.find_one(body)
+            if order is not None:
+                del order['_id']
+                del order['id']
+                del order['created_at']
+                del order['updated_at']
+                totalReward = 0.0
+                for itemId in order['items']:
+                    item = mongo.items.find_one({'id': itemId})
+                    totalReward += float(item['value'])
+                order['reward'] = totalReward
+                mongo.orders.delete_one(body)
+                closed_order = mongo_insert(mongo.closed_orders, order, "closed_orders")
+                closed_order = mongo.closed_orders.find_one({'_id': closed_order.inserted_id})
+                del closed_order['_id']
+                return closed_order
+            else:
+                return {'status': 'error', 'message': 'Order is not found.'}
+    
 app.add_url_rule('/id', 'id_detect', id_detect, methods=["POST", "GET"])
 app.add_url_rule('/register', 'register', register, methods=["POST", "GET"])
 app.add_url_rule('/login', 'login', login, methods=["POST", "GET"])
 app.add_url_rule('/user', 'user', user, methods=["GET"])
+app.add_url_rule('/user/<u_id>', 'user', user, methods=["GET"])
 app.add_url_rule('/item', 'item', item, methods=["POST", "GET"])
 app.add_url_rule('/item/<i_id>', 'item', item, methods=["POST", "GET"])     
 app.add_url_rule('/challenges', 'challenges', challenges, methods=["POST", "GET"])
