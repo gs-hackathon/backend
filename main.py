@@ -45,37 +45,30 @@ def mongo_update(db, query, content):
 
 def id_detect():
     if request.method == "POST":
-        image = request.files['image']
-        if image.filename == '':
-            return {"status": "error", "message": "No selected file."}
-        filename = secure_filename(image.filename)
-        savedpath = os.path.join(app.config['ID_UPLOAD_FOLDER'], filename)
-        image.save(savedpath)
+        body = request.get_json()
+        image = body['encoded'].replace("b'", "")
         data = {
             "n_id": "",
             "name": "",
             "surname": ""
         }
-        with open(savedpath, 'rb') as image_file:
-            try:
-                encoded_string = str(base64.b64encode(image_file.read())).replace("b'", "")
-                base64_response = send_base64(image.mimetype, encoded_string.replace("'", ""))[0]
-            except Exception as e:
-                print(e)
-                return {'status': 'error', 'message': 'An error occured while encoding and scanning document.'}
-            print(base64_response)
-            if base64_response['model']['type'] == 'id/tur' and base64_response['fields']['documentType']['isValid']:
-                #if base64_response['fields']['nationalIdNumber']['isValid']:
-                #    data['n_id'] = base64_response['fields']['nationalIdNumber']['value']
-                #else:
-                #    return {'status': 'error', 'message': 'National ID Number is Invalid.'}
-                data['n_id'] = base64_response['fields']['nationalIdNumber']['value']
-                data['name'] = base64_response['fields']['givenName']['value']
-                data['surname'] = base64_response['fields']['familyName']['value']
-                data['isValid'] = base64_response['fields']['nationalIdNumber']['isValid']
-            else:
-                return {"status": "error", "message": "ID is invalid."}
-            return data
+        try:
+            base64_response = send_base64(body['mimetype'], image.replace("'", ""))[0]
+        except Exception as e:
+            print(e)
+            return {'status': 'error', 'message': 'An error occured while encoding and scanning document.'}
+        print(base64_response)
+        if base64_response['model']['type'] == 'id/tur' and base64_response['fields']['documentType']['isValid']:
+            #if base64_response['fields']['nationalIdNumber']['isValid']:
+            #    data['n_id'] = base64_response['fields']['nationalIdNumber']['value']
+            #else:
+            #    return {'status': 'error', 'message': 'National ID Number is Invalid.'}
+            data['n_id'] = base64_response['fields']['nationalIdNumber']['value']
+            data['name'] = base64_response['fields']['givenName']['value']
+            data['surname'] = base64_response['fields']['familyName']['value']
+            data['isValid'] = base64_response['fields']['nationalIdNumber']['isValid']
+        else:
+            return {"status": "error", "message": "ID is invalid."}
         
 def register():
     if request.method == "POST":

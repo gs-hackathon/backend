@@ -1,0 +1,1793 @@
+{
+	"info": {
+		"_postman_id": "50f6d3c6-fe52-4168-9aa8-176db493c630",
+		"name": "Hackathon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"n_id\": \"11111111111\",\n    \"name\": \"Hamza Mirhan\",\n    \"surname\": \"Almendi\",\n    \"password\": \"111111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/register",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Register",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"n_id\": \"11111111111\",\n    \"name\": \"Hamza Mirhan\",\n    \"surname\": \"Almendi\",\n    \"password\": \"111111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8080/register",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 03:51:29 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "144"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"challenges\": [],\n    \"n_id\": \"11111111111\",\n    \"name\": \"Hamza Mirhan\",\n    \"password\": \"111111\",\n    \"points\": 0,\n    \"surname\": \"Almendi\"\n}"
+				},
+				{
+					"name": "Register Incorrect",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"n_id\": \"11111111111\",\n    \"name\": \"Hamza Mirhan\",\n    \"surname\": \"Almendi\",\n    \"password\": \"111111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8080/register",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 06:07:34 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "73"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Already registered national id.\",\n    \"status\": \"error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"n_id\": \"11111111111\",\n    \"password\": \"11111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/login",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Login Correct",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"n_id\": \"11111111111\",\n    \"password\": \"111111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8080/login",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 03:52:17 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "144"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"challenges\": [],\n    \"n_id\": \"11111111111\",\n    \"name\": \"Hamza Mirhan\",\n    \"password\": \"111111\",\n    \"points\": 0,\n    \"surname\": \"Almendi\"\n}"
+				},
+				{
+					"name": "Login Incorrect",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"n_id\": \"11111111111\",\n    \"password\": \"11111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8080/login",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 06:07:09 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "64"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Password is not match.\",\n    \"status\": \"error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/user",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Users",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/user",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:16:14 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "233"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"list\": [\n        {\n            \"challenges\": [],\n            \"created_at\": 1652602497,\n            \"n_id\": \"11111111111\",\n            \"name\": \"Hamza Mirhan\",\n            \"points\": 0,\n            \"surname\": \"Almendi\",\n            \"updated_at\": 1652602497\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Specific User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/user/11111111112",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"user",
+						"11111111112"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Specific User",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/user/11111111111",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"11111111111"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:15:46 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "177"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"challenges\": [],\n    \"created_at\": 1652602497,\n    \"n_id\": \"11111111111\",\n    \"name\": \"Hamza Mirhan\",\n    \"points\": 0,\n    \"surname\": \"Almendi\",\n    \"updated_at\": 1652602497\n}"
+				},
+				{
+					"name": "Get Specific User Incorrect",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/user/11111111112",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"11111111112"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:15:53 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "77"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"This national id is not registered.\",\n    \"status\": \"error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Id Detect",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"mimetype\": \"image/jpg\",\n    \"encoded\": \"/9j/4f//RXhpZgAASUkqAAgAAAAKABIBAwABAAAABgAAABMCAwABAAAAAQAAABoBBQABAAAAhgAAABsBBQABAAAAjgAAACgBAwABAAAAAgAAAA8BAgAIAAAAlgAAABABAgAJAAAAngAAADEBAgAOAAAApwAAADIBAgAUAAAAtQAAAGmHBAABAAAAyQAAAPICAABIAAAAAQAAAEgAAAABAAAAc2Ftc3VuZwBTTS1KMjYwRgBKMjYwRlhYVTlBVUQzADIwMjI6MDU6MTUgMTI6MjA6NTQAHgCaggUAAQAAADcCAACdggUAAQAAAD8CAAAiiAMAAQAAAAIAAAAniAMAAQAAADIAAAAAkAcABAAAADAyMjADkAIAFAAAAEcCAAAEkAIAFAAAAFsCAAABkgoAAQAAAG8CAAACkgUAAQAAAHcCAAADkgoAAQAAAH8CAAAEkgoAAQAAAIcCAAAFkgUAAQAAAI8CAAAHkgMAAQAAAAMAAAAJkgMAAQAAAAAAAAAAoAcABAAAADAxMDABkQcABAAAAAECAwAKkgUAAQAAAJcCAACQkgIABQAAAJ8CAACRkgIABQAAAKQCAACSkgIABQAAAKkCAACGkgcADQAAAK4CAAABoAMAAQAAAAEAAAACoAQAAQAAAMAMAAADoAQAAQAAAJAJAAACpAMAAQAAAAAAAAADpAMAAQAAAAAAAAAFpAMAAQAAAB8AAAAGpAMAAQAAAAAAAgAgpAIAGQAAALsCAAAFoAQAAQAAANQCAAAAAAAAAQAAADIAAADcAAAAZAAAADIwMjI6MDU6MTUgMTI6MjA6NTQAMjAyMjowNToxNSAxMjoyMDo1NAA0AgAAZAAAAOMAAABkAAAAjQEAAGQAAAAAAAAACgAAAOMAAABkAAAASgEAAGQAAAAwMjIxADAyMjEAMDIyMQAAAAAAAAAAAAAAAAAAQTA4TExLQTAwQU0gQTA4TExMSTAxQUEKAAIAAQACAAQAAABSOTgAAgA\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/id",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"id"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Id Detect Invalid",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mimetype\": \"image/jpg\",\n    \"encoded\": \"/9j/4f//RXhpZgAASUkqAAgAAAAKABIBAwABAAAABgAAABMCAwABAAAAAQAAABoBBQABAAAAhgAAABsBBQABAAAAjgAAACgBAwABAAAAAgAAAA8BAgAIAAAAlgAAABABAgAJAAAAngAAADEBAgAOAAAApwAAADIBAgAUAAAAtQAAAGmHBAABAAAAyQAAAPICAABIAAAAAQAAAEgAAAABAAAAc2Ftc3VuZwBTTS1KMjYwRgBKMjYwRlhYVTlBVUQzADIwMjI6MDU6MTUgMTI6MjA6NTQAHgCaggUAAQAAADcCAACdggUAAQAAAD8CAAAiiAMAAQAAAAIAAAAniAMAAQAAADIAAAAAkAcABAAAADAyMjADkAIAFAAAAEcCAAAEkAIAFAAAAFsCAAABkgoAAQAAAG8CAAACkgUAAQAAAHcCAAADkgoAAQAAAH8CAAAEkgoAAQAAAIcCAAAFkgUAAQAAAI8CAAAHkgMAAQAAAAMAAAAJkgMAAQAAAAAAAAAAoAcABAAAADAxMDABkQcABAAAAAECAwAKkgUAAQAAAJcCAACQkgIABQAAAJ8CAACRkgIABQAAAKQCAACSkgIABQAAAKkCAACGkgcADQAAAK4CAAABoAMAAQAAAAEAAAACoAQAAQAAAMAMAAADoAQAAQAAAJAJAAACpAMAAQAAAAAAAAADpAMAAQAAAAAAAAAFpAMAAQAAAB8AAAAGpAMAAQAAAAAAAgAgpAIAGQAAALsCAAAFoAQAAQAAANQCAAAAAAAAAQAAADIAAADcAAAAZAAAADIwMjI6MDU6MTUgMTI6MjA6NTQAMjAyMjowNToxNSAxMjoyMDo1NAA0AgAAZAAAAOMAAABkAAAAjQEAAGQAAAAAAAAACgAAAOMAAABkAAAASgEAAGQAAAAwMjIxADAyMjEAMDIyMQAAAAAAAAAAAAAAAAAAQTA4TExLQTAwQU0gQTA4TExMSTAxQUEKAAIAAQACAAQAAABSOTgAAgA\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8080/id",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"id"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 09:22:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"ID is invalid.\",\n    \"status\": \"error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Item",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/item/6",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"item",
+						"6"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Item",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/item/3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 03:27:33 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "199"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"continent_name\": \"karistirilmis_plastik\",\n    \"created_at\": 1652584518,\n    \"id\": 3,\n    \"name\": \"Karıştırılmış Plastik\",\n    \"updated_at\": 1652584518,\n    \"value\": 2\n}"
+				},
+				{
+					"name": "Get Item Incorrect",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/item/6",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"item",
+								"6"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 06:08:32 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"No Item Finded With ID 6\",\n    \"status\": \"error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get All Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/item",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get All Items",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/item",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"item"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 03:23:47 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "604"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"list\": [\n        {\n            \"continent_name\": \"sut_kutusu\",\n            \"created_at\": 1652584485,\n            \"id\": 1,\n            \"name\": \"Süt Kutusu\",\n            \"updated_at\": 1652584485,\n            \"value\": 2\n        },\n        {\n            \"continent_name\": \"pil\",\n            \"created_at\": 1652584495,\n            \"id\": 2,\n            \"name\": \"Pil\",\n            \"updated_at\": 1652584495,\n            \"value\": 2\n        },\n        {\n            \"continent_name\": \"karistirilmis_plastik\",\n            \"created_at\": 1652584518,\n            \"id\": 3,\n            \"name\": \"Karıştırılmış Plastik\",\n            \"updated_at\": 1652584518,\n            \"value\": 2\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Insert Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Karıştırılmış Plastik\",\n    \"value\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/item",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"item"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Insert Item",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Karıştırılmış Plastik\",\n    \"value\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8080/item",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"item"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 03:15:18 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "199"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"continent_name\": \"karistirilmis_plastik\",\n    \"created_at\": 1652584518,\n    \"id\": 3,\n    \"name\": \"Karıştırılmış Plastik\",\n    \"updated_at\": 1652584518,\n    \"value\": 2\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Challenge",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/challenges/2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"challenges",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Challenge",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/challenges/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"challenges",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:16:26 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "345"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"continent_name\": \"karton_topla\",\n    \"created_at\": 1652587253,\n    \"description\": \"10 Karton toplayarak puanları kapmayı başarabilirsin!\",\n    \"duration\": 2,\n    \"duration_type\": 1,\n    \"id\": 1,\n    \"image\": \"\",\n    \"name\": \"Karton Topla!\",\n    \"reward\": 2.5,\n    \"short_description\": \"10 Karton Topla\",\n    \"updated_at\": 1652587253\n}"
+				},
+				{
+					"name": "Get Challenge Incorrect",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/challenges/2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"challenges",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:16:42 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "71"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"No Challenge Finded With ID 2\",\n    \"status\": \"error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get All Challenges",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/challenges",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"challenges"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get All Challenges",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/challenges",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"challenges"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:16:50 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "417"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"list\": [\n        {\n            \"continent_name\": \"karton_topla\",\n            \"created_at\": 1652587253,\n            \"description\": \"10 Karton toplayarak puanları kapmayı başarabilirsin!\",\n            \"duration\": 2,\n            \"duration_type\": 1,\n            \"id\": 1,\n            \"image\": \"\",\n            \"name\": \"Karton Topla!\",\n            \"reward\": 2.5,\n            \"short_description\": \"10 Karton Topla\",\n            \"updated_at\": 1652587253\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Insert Challenge",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Süt Kapağı Biriktir!\",\n    \"description\": \"30 Süt kapağı biriktir ve ödülleri kap!\",\n    \"short_description\": \"30 Süt Kapağı Biriktir\",\n    \"image\": \"\",\n    \"reward\": 2.50,\n    \"duration\": 2,\n    \"duration_type\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/challenges",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"challenges"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Insert Challenge",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Süt Kapağı Biriktir!\",\n    \"description\": \"30 Süt kapağı biriktir ve ödülleri kap!\",\n    \"short_description\": \"30 Süt Kapağı Biriktir\",\n    \"image\": \"\",\n    \"reward\": 2.50,\n    \"duration\": 2,\n    \"duration_type\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8080/challenges",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"challenges"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:17:44 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "392"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"continent_name\": \"sut_kapagi_biriktir\",\n    \"created_at\": 1652602664,\n    \"description\": \"30 Süt kapağı biriktir ve ödülleri kap!\",\n    \"duration\": 2,\n    \"duration_type\": 1,\n    \"id\": 2,\n    \"image\": \"\",\n    \"name\": \"Süt Kapağı Biriktir!\",\n    \"reward\": 2.5,\n    \"short_description\": \"30 Süt Kapağı Biriktir\",\n    \"updated_at\": 1652602664\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Assigned Challenges",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/challenges/assign/11111111111",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"challenges",
+						"assign",
+						"11111111111"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Assigned Challenges",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/challenges/assign/11111111111",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"challenges",
+								"assign",
+								"11111111111"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:18:40 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "26"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        1\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Assign Challenge",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/challenges/assign/11111111111/3",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"challenges",
+						"assign",
+						"11111111111",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Assign Challenge",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/challenges/assign/11111111111/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"challenges",
+								"assign",
+								"11111111111",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:18:17 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "211"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"challenges\": [\n        1\n    ],\n    \"created_at\": 1652602497,\n    \"n_id\": \"11111111111\",\n    \"name\": \"Hamza Mirhan\",\n    \"password\": \"111111\",\n    \"points\": 0,\n    \"surname\": \"Almendi\",\n    \"updated_at\": 1652602698\n}"
+				},
+				{
+					"name": "Assign Challenge Incorrect",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/challenges/assign/11111111111/3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"challenges",
+								"assign",
+								"11111111111",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:18:30 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "74"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"This challenge id is not finded.\",\n    \"status\": \"error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Unassign Challenge",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/challenges/unassign/11111111111/1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"challenges",
+						"unassign",
+						"11111111111",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Unassign Challenge",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/challenges/unassign/11111111111/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"challenges",
+								"unassign",
+								"11111111111",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:18:57 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "202"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"challenges\": [],\n    \"created_at\": 1652602497,\n    \"n_id\": \"11111111111\",\n    \"name\": \"Hamza Mirhan\",\n    \"password\": \"111111\",\n    \"points\": 2.5,\n    \"surname\": \"Almendi\",\n    \"updated_at\": 1652602737\n}"
+				},
+				{
+					"name": "Unassign Challenge Incorrect",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8080/challenges/unassign/11111111111/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"challenges",
+								"unassign",
+								"11111111111",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:19:09 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "76"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User does not have this challenge.\",\n    \"status\": \"error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Order(s)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"order_status\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/order",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Order(s)",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"order_status\": 0, // -1 closed / 0 all / 1 active\n    \"id\": 2, // optional order id\n    \"n_id\": \"11111111111\" // optional user id\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8080/order",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:34:01 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "353"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"list\": [\n        {\n            \"address\": \"x mahalle y sokak z apartmanı daire -1 istanbul türkiye\",\n            \"created_at\": 1652603571,\n            \"id\": 2,\n            \"image\": \"\",\n            \"items\": [\n                1,\n                2,\n                3\n            ],\n            \"n_id\": \"11111111111\",\n            \"pick_up_date\": \"15-05-2022 14:20\",\n            \"updated_at\": 1652603571\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Insert Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"n_id\": \"11111111111\",\n    \"image\": \"\",\n    \"items\": [1,2,3],\n    \"address\": \"x mahalle y sokak z apartmanı daire -1 istanbul türkiye\",\n    \"pick_up_date\": \"15-05-2022 14:20\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/order?status=new",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"order"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "new"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Insert Order",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"n_id\": \"11111111111\",\n    \"image\": \"\",\n    \"items\": [1,2,3],\n    \"address\": \"x mahalle y sokak z apartmanı daire -1 istanbul türkiye\",\n    \"pick_up_date\": \"15-05-2022 14:20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8080/order?status=new",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "new"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:32:51 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "277"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"address\": \"x mahalle y sokak z apartmanı daire -1 istanbul türkiye\",\n    \"created_at\": 1652603571,\n    \"id\": 2,\n    \"image\": \"\",\n    \"items\": [\n        1,\n        2,\n        3\n    ],\n    \"n_id\": \"11111111111\",\n    \"pick_up_date\": \"15-05-2022 14:20\",\n    \"updated_at\": 1652603571\n}"
+				}
+			]
+		},
+		{
+			"name": "Close Order",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:8080/order?status=closed",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"order"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "closed"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Close Order",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8080/order?status=closed",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "closed"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:36:59 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "295"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"address\": \"x mahalle y sokak z apartmanı daire -1 istanbul türkiye\",\n    \"created_at\": 1652603819,\n    \"id\": 1,\n    \"image\": \"\",\n    \"items\": [\n        1,\n        2,\n        3\n    ],\n    \"n_id\": \"11111111111\",\n    \"pick_up_date\": \"15-05-2022 14:20\",\n    \"reward\": 6,\n    \"updated_at\": 1652603819\n}"
+				},
+				{
+					"name": "Close Order Incorrect",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8080/order?status=closed",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "closed"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.1.2 Python/3.9.12"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 May 2022 08:38:00 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Order is not found.\",\n    \"status\": \"error\"\n}"
+				}
+			]
+		}
+	]
+}
