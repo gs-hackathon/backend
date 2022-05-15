@@ -1,8 +1,8 @@
-import re
 from flask import Flask, request, send_file
 from werkzeug.utils import secure_filename
 from flask_pymongo import PyMongo
-import os, json, requests, base64
+import os, json, requests, base64, re
+from datetime import datetime
 import config, Logger
 
 logger=Logger.logging_start(config.Debug)
@@ -30,6 +30,18 @@ def send_base64(mime, encoded):
 def index():
     return "Hi!"
 app.add_url_rule('/', 'index', index, methods=["POST", "GET"])
+
+def mongo_insert(db, content, collection):
+    x = mongo.counters.insert_one({'collection': collection})
+    i_id = len(list(mongo.counters.find({'collection': collection})))
+    content['id'] = i_id
+    content['created_at'] = round(datetime.now().timestamp())
+    content['updated_at'] = round(datetime.now().timestamp())
+    return db.insert_one(content)
+
+def mongo_update(db, query, content):
+    content['updated_at'] = round(datetime.now().timestamp())
+    return db.update_one(query, {'$set': content})
 
 def id_detect():
     if request.method == "POST":
@@ -64,39 +76,167 @@ def id_detect():
             else:
                 return {"status": "error", "message": "ID is invalid."}
             return data
-app.add_url_rule('/id', 'id_detect', id_detect, methods=["POST", "GET"])
         
 def register():
     if request.method == "POST":
         body = request.get_json()
         if mongo.users.find_one({'n_id': body['n_id']}) is not None:
             return {"status": "error", "message": "Already registered national id."}
+        body['challenges'] = []
+        body['points'] = 0.00
+        body['created_at'] = round(datetime.now().timestamp())
+        body['updated_at'] = round(datetime.now().timestamp())
         inserted = mongo.users.insert_one(body)
         resp = mongo.users.find_one({'_id': inserted.inserted_id})
         del resp['_id']
         return resp
-app.add_url_rule('/register', 'register', register, methods=["POST", "GET"])
 
-def item(id=None):
-    if id:
-        data = mongo.items.find_one({"id": id})
+def login():
+    if request.method == "POST":
+        body = request.get_json()
+        if mongo.users.find_one({'n_id': body['n_id']}) is None:
+            return {"status": "error", "message": "This national id is not registered."}
+        resp = mongo.users.find_one({'n_id': body['n_id']})
+        del resp['_id']
+        if resp['password'] == body['password']:
+            return resp
+        else:
+            return {'status': 'error', 'message': 'Password is not match.'}
+
+def user():
+    if request.method == "GET":
+        body = request.get_json()
+        resp = mongo.users.find_one({'n_id': body['n_id']})
+        if resp is None:
+            return {"status": "error", "message": "This national id is not registered."}
+        del resp['_id']
+        del resp['password']
+        return resp
+
+def item(i_id=None):
+    if i_id:
+        data = mongo.items.find_one({'id': int(i_id)})
+        print(data)
         if data:
             del data['_id']
             return data
         else:
-            return {'status': 'error', 'message': 'No Item Finded With ID %s' % id}
+            return {'status': 'error', 'message': 'No Item Finded With ID %s' % i_id}
     else:
         if request.method == "POST":
-            inserted = mongo.items.insert_one(request.get_json())
+            body = request.get_json()
+            body['continent_name'] = (re.sub(r'[^\w\s]', '', body['name'].lower()).replace(' ', '_')).translate(str.maketrans("çğıöşü", "cgiosu"))
+            inserted = mongo_insert(mongo.items, body, 'items')
             resp = mongo.items.find_one({'_id': inserted.inserted_id})
             del resp['_id']
             return resp
         elif request.method == "GET":
-            get_all = [x.pop('_id') for x in mongo.items.find()]
-            return get_all
-            
+            get_all = [{k: v for k, v in x.items() if k != '_id'} for x in list(mongo.items.find())]
+            print(get_all)
+            return {'list': get_all}
+
+def challenges(c_id=None):
+    if c_id:
+        data = mongo.challenges.find_one({'id': int(c_id)})
+        if data:
+            del data['_id']
+            return data
+        else:
+            return {'status': 'error', 'message': 'No Challenge Finded With ID %s' % c_id}
+    else:
+        if request.method == "POST":
+            body = request.get_json()
+            body['continent_name'] = (re.sub(r'[^\w\s]', '', body['name'].lower()).replace(' ', '_')).translate(str.maketrans("çğıöşü", "cgiosu"))
+            inserted = mongo_insert(mongo.challenges, body, 'challenges')
+            resp = mongo.challenges.find_one({'_id': inserted.inserted_id})
+            del resp['_id']
+            return resp
+        elif request.method == "GET":
+            get_all = [{k: v for k, v in x.items() if k != '_id'} for x in list(mongo.challenges.find())]
+            print(get_all)
+            return {'list': get_all}
+
+def challenge_assign(n_id, c_id=None):
+    if request.method == "GET":
+        if c_id is None:
+            resp = mongo.users.find_one({'n_id': n_id})
+            if resp is None:
+                return {"status": "error", "message": "This national id is not registered."}
+            return {'data': resp['challenges']}
+        else:
+            return {'status': 'error', 'message': 'Please remove challenge id in request for get user challenges.'}
+    elif request.method == "POST":
+        if c_id is not None:
+            c_id = int(c_id)
+            user = mongo.users.find_one({'n_id': n_id})
+            challenge = mongo.challenges.find_one({'id': c_id})
+            if user == None:
+                return {"status": "error", "message": "This national id is not registered."}
+            if challenge == None:
+                return {"status": "error", "message": "This challenge id is not finded."}
+            challenges = user['challenges']
+            if c_id in challenges:
+                return {"status": "error", "message": "User already have this challenge."}
+            user['challenges'].append(c_id)
+            user['updated_at'] = round(datetime.now().timestamp())
+            updated = mongo_update(mongo.users, {'n_id': n_id}, {'challenges': user['challenges']})
+            del user['_id']
+            return user
+        else:
+            return {'status': 'error', 'message': 'Please give challenge id in request for assign challenge to user.'}
+
+def unassign_challenge(n_id, c_id):
+    if request.method == "POST":
+        if c_id is not None:
+            c_id = int(c_id)
+            user = mongo.users.find_one({'n_id': n_id})
+            challenge = mongo.challenges.find_one({'id': c_id})
+            if user == None:
+                return {"status": "error", "message": "This national id is not registered."}
+            if challenge == None:
+                return {"status": "error", "message": "This challenge id is not finded."}
+            challenges = user['challenges']
+            if c_id not in challenges:
+                return {"status": "error", "message": "User does not have this challenge."}
+            user['challenges'].remove(c_id)
+            user['updated_at'] = round(datetime.now().timestamp())
+            user['points'] = float(user['points']) + float(challenge['reward'])
+            updated = mongo_update(mongo.users, {'n_id': n_id}, {'challenges': user['challenges'], 'points': user['points']})
+            del user['_id']
+            return user
+        else:
+            return {'status': 'error', 'message': 'Please give challenge id in request for assign challenge to user.'}
+
+def order():
+    if request.method == "GET":
+        body = request.get_json()
+        if body['order_status'] == 1:
+            del body['order_status']
+            get_all = [{k: v for k, v in x.items() if k != '_id'} for x in list(mongo.orders.find(body))]
+            return {'list': get_all}
+        elif body['order_status'] == -1:
+            del body['order_status']
+            get_all = [{k: v for k, v in x.items() if k != '_id'} for x in list(mongo.closed_orders.find(body))]
+            return {'list': get_all}
+        elif body['order_status'] == 0:
+            del body['order_status']
+            closed_all = [{k: v for k, v in x.items() if k != '_id'} for x in list(mongo.closed_orders.find(body))]
+            open_all = [{k: v for k, v in x.items() if k != '_id'} for x in list(mongo.orders.find(body))]
+            get_all = open_all + closed_all
+            return {'list': get_all}
+
+app.add_url_rule('/id', 'id_detect', id_detect, methods=["POST", "GET"])
+app.add_url_rule('/register', 'register', register, methods=["POST", "GET"])
+app.add_url_rule('/login', 'login', login, methods=["POST", "GET"])
+app.add_url_rule('/user', 'user', user, methods=["GET"])
 app.add_url_rule('/item', 'item', item, methods=["POST", "GET"])
-app.add_url_rule('/item/<id>', 'item', item, methods=["POST", "GET"])
+app.add_url_rule('/item/<i_id>', 'item', item, methods=["POST", "GET"])     
+app.add_url_rule('/challenges', 'challenges', challenges, methods=["POST", "GET"])
+app.add_url_rule('/challenges/<c_id>', 'challenges', challenges, methods=["POST", "GET"])
+app.add_url_rule('/challenges/assign/<n_id>', 'challenge assign', challenge_assign, methods=["POST", "GET"])
+app.add_url_rule('/challenges/assign/<n_id>/<c_id>', 'challenge assign', challenge_assign, methods=["POST", "GET"])
+app.add_url_rule('/challenges/unassign/<n_id>/<c_id>', 'challenge un assign', unassign_challenge, methods=["POST"])
+app.add_url_rule('/order', 'order', order, methods=["POST", "GET"])
 
 try:
     app.run(host=config.Host, port=config.Port, debug=config.Debug)
